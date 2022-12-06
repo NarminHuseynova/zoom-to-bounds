@@ -1,28 +1,6 @@
 import type { FillLayer, LineLayer } from "react-map-gl";
-import DATA from "./data/population-count.json";
+import DATA from "./data/countries.json";
 import MAP_STYLE from "./map-style-json/map-style-basic-v8.json";
-
-// export interface Geometry {
-//   type: string;
-//   coordinates: any[][][];
-// }
-
-// export interface Properties {
-//   id: any;
-//   neighborhood: string;
-//   population: number;
-// }
-
-// export interface Item {
-//   geometry: Geometry;
-//   id: string;
-//   properties: Properties;
-//   type: string;
-// }
-
-// export interface RootObject {
-//   items: Item[];
-// }
 
 const sfNeighborhoods = {
   type: "geojson",
