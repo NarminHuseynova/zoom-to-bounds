@@ -1,5 +1,5 @@
 import type { FillLayer, LineLayer } from "react-map-gl";
-import DATA from "./data/population-count.json";
+import DATA from "./data/countries.json";
 import MAP_STYLE from "./map-style-json/map-style-basic-v8.json";
 
 // export interface Geometry {

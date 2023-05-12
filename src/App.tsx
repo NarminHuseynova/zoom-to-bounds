@@ -11,33 +11,37 @@ function App() {
 
   const [marker, setMarker] = useState<any>(null);
 
-  const onClick = useCallback((event: MapLayerMouseEvent) => {
-    const feature = event.features?.[0];
-    if (feature) {
-      const [minLng, minLat, maxLng, maxLat] = bbox(feature);
+  const onClick = useCallback(
+    (event: MapLayerMouseEvent) => {
+      console.log(marker);
+      const feature = event.features?.[0];
+      if (feature) {
+        const [minLng, minLat, maxLng, maxLat] = bbox(feature);
 
-      const center = mapRef.current?.getCenter();
-      setMarker({
-        ...center,
-        ...feature.properties,
-      });
-      mapRef.current?.fitBounds(
-        [
-          [minLng, minLat],
-          [maxLng, maxLat],
-        ],
-        { padding: 40, duration: 1000 }
-      );
-    }
-  }, []);
+        const center = mapRef.current?.getCenter();
+        setMarker({
+          ...center,
+          ...feature.properties,
+        });
+        mapRef.current?.fitBounds(
+          [
+            [minLng, minLat],
+            [maxLng, maxLat],
+          ],
+          { padding: 40, duration: 1000 }
+        );
+      }
+    },
+    [marker]
+  );
   return (
     <>
       <Map
         ref={mapRef}
         initialViewState={{
-          longitude: -122.4,
-          latitude: 37.78,
-          zoom: 10,
+          longitude: 45.9588273520001,
+          latitude: 39.272436015000139,
+          zoom: 2,
         }}
         style={{ width: "100%", height: "100vh" }}
         mapStyle={MAP_STYLE as MapboxStyle}
@@ -51,13 +55,26 @@ function App() {
             latitude={marker.lat}
             anchor="bottom"
             style={{
-              padding: "10px 15px",
-              backgroundColor: "white",
+              padding: "8px 20px",
+              backgroundColor: "#ffffff7d",
               textAlign: "center",
               color: "black",
             }}
           >
-            <div>Population: {marker.population}</div>
+            <p
+              style={{
+                fontWeight: "bold",
+                textTransform: "uppercase",
+                margin: 0,
+                padding: "3px 0",
+              }}
+            >
+              {marker.ADMIN}
+            </p>
+            <div style={{ display: "flex", justifyContent: "space-between" }}>
+              <span>Visa sayı:</span>
+              <span>{marker.population}</span>
+            </div>
           </Marker>
         )}
       </Map>
